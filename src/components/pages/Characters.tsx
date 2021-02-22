@@ -3,7 +3,7 @@ import {
   Character,
   useGetCharactersQuery,
 } from "src/graphql/queries/getCharacters.generated";
-import CharacterCard from "../molecules/CharacterCard";
+import CharacterCard from "../atoms/CharacterCard";
 
 const Characters: React.FC = (): JSX.Element => {
   const { data, loading, error } = useGetCharactersQuery({
