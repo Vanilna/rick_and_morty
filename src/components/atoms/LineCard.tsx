@@ -16,6 +16,7 @@ const LineCard: React.FC<LineCardProps> = ({ id, name, type }) => {
       to={`/${type}/${id}`}
       key={id}
       className="text-1xl font-semibold p-2.5 border-2 rounded-md bg-white w-full"
+      data-testid="card"
     >
       {name}
     </Link>
