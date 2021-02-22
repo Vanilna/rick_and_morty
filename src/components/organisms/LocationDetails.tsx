@@ -1,16 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import SubSectionHeader from "../atoms/SubSectionHeader";
 import {
   useGetLocationDetailsQuery,
   Location as LocationType,
   Character,
 } from "src/graphql/queries/getLocationDetails.generated";
+
+import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
 import SectionHeader from "../atoms/SectionHeader";
+import SubSectionHeader from "../atoms/SubSectionHeader";
 import InfoBlock from "../atoms/InfoBlock";
-import CharactersGrid from "./CharactersGrid";
-import ErrorAndLoadingHandler from "./ErrorAndLoadingHandler";
+import CharactersGrid from "../molecules/CharactersGrid";
 
 type RouteParams = {
   id: string;

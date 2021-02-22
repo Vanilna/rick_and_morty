@@ -5,11 +5,12 @@ import {
   Character,
   useGetCharacterDetailsQuery,
 } from "src/graphql/queries/getCharacterDetails.generated";
-import InfoBlock from "../atoms/InfoBlock";
-import LineCard from "../atoms/LineCard";
+
+import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
 import SectionHeader from "../atoms/SectionHeader";
 import SubSectionHeader from "../atoms/SubSectionHeader";
-import ErrorAndLoadingHandler from "./ErrorAndLoadingHandler";
+import InfoBlock from "../atoms/InfoBlock";
+import LineCard from "../atoms/LineCard";
 
 type RouteParams = {
   id: string;

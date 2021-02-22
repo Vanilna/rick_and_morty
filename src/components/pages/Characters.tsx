@@ -1,11 +1,14 @@
 import React from "react";
+
 import {
   Character,
   useGetCharactersQuery,
 } from "src/graphql/queries/getCharacters.generated";
+
 import usePageNavigation from "src/hooks/usePageNavigation";
-import CharactersGrid from "../molecules/CharactersGrid";
+
 import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
+import CharactersGrid from "../molecules/CharactersGrid";
 import PageNavigation from "../molecules/PageNavigation";
 
 const Characters: React.FC = (): JSX.Element => {

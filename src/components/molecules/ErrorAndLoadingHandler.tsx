@@ -1,5 +1,6 @@
 import React from "react";
 import { ApolloError } from "@apollo/client";
+
 import Loader from "../atoms/Loader";
 
 type ErrorAndLoadingHandlerProps = {

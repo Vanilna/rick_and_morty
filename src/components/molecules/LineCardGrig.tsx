@@ -1,8 +1,10 @@
 import React from "react";
+
 import {
   Episode,
   Location as LocationType,
 } from "src/graphql/queries/getLocationDetails.generated";
+
 import LineCard from "../atoms/LineCard";
 
 type LineCardGridProps = {

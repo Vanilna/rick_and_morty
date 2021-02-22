@@ -3,11 +3,11 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from "../components/pages/Home";
 import Characters from "src/components/pages/Characters";
-import CharacterDetails from "src/components/molecules/CharacterDetails";
+import CharacterDetails from "src/components/organisms/CharacterDetails";
 import Episodes from "src/components/pages/Episodes";
-import EpisodeDetails from "src/components/molecules/EpisodeDetails";
+import EpisodeDetails from "src/components/organisms/EpisodeDetails";
 import Locations from "src/components/pages/Locations";
-import LocationDetails from "src/components/molecules/LocationDetails";
+import LocationDetails from "src/components/organisms/LocationDetails";
 
 const MainRouter = () => (
   <Switch>

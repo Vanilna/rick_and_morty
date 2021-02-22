@@ -1,11 +1,15 @@
 import React from "react";
 
-import { useGetEpisodesQuery } from "src/graphql/queries/getEpisodes.generated";
-import { Episode } from "src/graphql/queries/getCharacters.generated";
+import {
+  useGetEpisodesQuery,
+  Episode,
+} from "src/graphql/queries/getEpisodes.generated";
+
+import usePageNavigation from "src/hooks/usePageNavigation";
+
+import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
 import LineCardGrid from "../molecules/LineCardGrig";
 import PageNavigation from "../molecules/PageNavigation";
-import usePageNavigation from "src/hooks/usePageNavigation";
-import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
 
 const Episodes: React.FC = (): JSX.Element => {
   const [page, setPage] = usePageNavigation();

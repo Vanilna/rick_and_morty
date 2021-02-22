@@ -1,11 +1,15 @@
 import React from "react";
 
-import { useGetLocationsQuery } from "src/graphql/queries/getLocations.generated";
-import { Episode } from "src/graphql/queries/getCharacters.generated";
-import LineCardGrid from "../molecules/LineCardGrig";
+import {
+  useGetLocationsQuery,
+  Episode,
+} from "src/graphql/queries/getLocations.generated";
+
 import usePageNavigation from "src/hooks/usePageNavigation";
-import PageNavigation from "../molecules/PageNavigation";
+
 import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
+import LineCardGrid from "../molecules/LineCardGrig";
+import PageNavigation from "../molecules/PageNavigation";
 
 const Locations: React.FC = (): JSX.Element => {
   const [page, setPage] = usePageNavigation();

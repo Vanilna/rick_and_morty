@@ -6,11 +6,12 @@ import {
   Character,
   useGetEpisodeDetailsQuery,
 } from "src/graphql/queries/getEpisodeDetails.generated";
+
+import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
 import SubSectionHeader from "../atoms/SubSectionHeader";
 import SectionHeader from "../atoms/SectionHeader";
 import InfoBlock from "../atoms/InfoBlock";
-import CharactersGrid from "./CharactersGrid";
-import ErrorAndLoadingHandler from "./ErrorAndLoadingHandler";
+import CharactersGrid from "../molecules/CharactersGrid";
 
 type RouteParams = {
   id: string;

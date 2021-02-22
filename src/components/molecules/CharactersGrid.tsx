@@ -1,5 +1,7 @@
 import React from "react";
+
 import { Character } from "src/graphql/queries/getCharacters.generated";
+
 import CharacterCard from "../atoms/CharacterCard";
 
 type CharactersGridProps = {

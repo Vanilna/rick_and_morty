@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loader = () => (
+const Loader: React.FC = (): JSX.Element => (
   <svg
     width="150"
     height="150"

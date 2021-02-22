@@ -3,6 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 
 import client from "../../graphql/client";
+
 import MainRouter from "src/navigation/MainRouter";
 import Header from "../molecules/Header";
 import Background from "./Background";
