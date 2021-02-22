@@ -20,10 +20,9 @@ const Characters: React.FC = (): JSX.Element => {
   }
 
   const charactersList = data?.characters?.results as Character[];
-  console.log(charactersList);
 
   return (
-    <div>
+    <div className="flex">
       {charactersList &&
         charactersList.map((char) => (
           <CharacterCard character={char} key={char.id} />
