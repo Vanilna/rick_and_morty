@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Loader from "../atoms/Loader";
 import SubSectionHeader from "../atoms/SubSectionHeader";
 import {
   useGetLocationDetailsQuery,
@@ -11,6 +10,7 @@ import {
 import SectionHeader from "../atoms/SectionHeader";
 import InfoBlock from "../atoms/InfoBlock";
 import CharactersGrid from "./CharactersGrid";
+import ErrorAndLoadingHandler from "./ErrorAndLoadingHandler";
 
 type RouteParams = {
   id: string;
@@ -22,30 +22,26 @@ const LocationDetails: React.FC = () => {
     variables: { id },
   });
 
-  if (loading) {
-    return <Loader />;
+  if (data) {
+    var { name, type, dimension, residents } = data?.location as LocationType;
   }
-
-  if (error) {
-    return <p>Sorry, something went wrong, please try again later</p>;
-  }
-
-  const { name, type, dimension, residents } = data?.location as LocationType;
 
   return (
-    <div>
-      <SectionHeader>{name}</SectionHeader>
-
-      <InfoBlock>
-        <li>Type: {type}</li>
-        <li>Dimension: {dimension}</li>
-      </InfoBlock>
-
+    <ErrorAndLoadingHandler error={error} loading={loading}>
       <div>
-        <SubSectionHeader>characters:</SubSectionHeader>
-        <CharactersGrid characters={residents as Character[]} />
+        <SectionHeader>{name}</SectionHeader>
+
+        <InfoBlock>
+          <li>Type: {type}</li>
+          <li>Dimension: {dimension}</li>
+        </InfoBlock>
+
+        <div>
+          <SubSectionHeader>characters:</SubSectionHeader>
+          <CharactersGrid characters={residents as Character[]} />
+        </div>
       </div>
-    </div>
+    </ErrorAndLoadingHandler>
   );
 };
 

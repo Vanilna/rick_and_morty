@@ -4,8 +4,8 @@ import {
   useGetCharactersQuery,
 } from "src/graphql/queries/getCharacters.generated";
 import usePageNavigation from "src/hooks/usePageNavigation";
-import Loader from "../atoms/Loader";
 import CharactersGrid from "../molecules/CharactersGrid";
+import ErrorAndLoadingHandler from "../molecules/ErrorAndLoadingHandler";
 import PageNavigation from "../molecules/PageNavigation";
 
 const Characters: React.FC = (): JSX.Element => {
@@ -18,16 +18,10 @@ const Characters: React.FC = (): JSX.Element => {
   const maxPage = data?.characters?.info?.pages;
 
   return (
-    <>
-      {!loading && !error && (
-        <>
-          <CharactersGrid characters={charactersList} />
-          <PageNavigation handleClick={setPage} maxPage={maxPage} />
-        </>
-      )}
-      {loading && <Loader />}
-      {error && <p>Sorry, something went wrong, please try again later</p>}
-    </>
+    <ErrorAndLoadingHandler error={error} loading={loading}>
+      <CharactersGrid characters={charactersList} />
+      <PageNavigation handleClick={setPage} maxPage={maxPage} />
+    </ErrorAndLoadingHandler>
   );
 };
 

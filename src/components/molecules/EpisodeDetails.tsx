@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Loader from "../atoms/Loader";
 import {
   Episode,
   Character,
@@ -11,6 +10,7 @@ import SubSectionHeader from "../atoms/SubSectionHeader";
 import SectionHeader from "../atoms/SectionHeader";
 import InfoBlock from "../atoms/InfoBlock";
 import CharactersGrid from "./CharactersGrid";
+import ErrorAndLoadingHandler from "./ErrorAndLoadingHandler";
 
 type RouteParams = {
   id: string;
@@ -22,30 +22,26 @@ const CharacterDetails: React.FC = () => {
     variables: { id },
   });
 
-  if (loading) {
-    return <Loader />;
+  if (data) {
+    var { name, air_date, episode, characters } = data?.episode as Episode;
   }
-
-  if (error) {
-    return <p>Sorry, something went wrong, please try again later</p>;
-  }
-
-  const { name, air_date, episode, characters } = data?.episode as Episode;
 
   return (
-    <div>
-      <SectionHeader>{name}</SectionHeader>
-
-      <InfoBlock>
-        <li>Air date: {air_date}</li>
-        <li>episode: {episode}</li>
-      </InfoBlock>
-
+    <ErrorAndLoadingHandler error={error} loading={loading}>
       <div>
-        <SubSectionHeader>characters:</SubSectionHeader>
-        <CharactersGrid characters={characters as Character[]} />
+        <SectionHeader>{name}</SectionHeader>
+
+        <InfoBlock>
+          <li>Air date: {air_date}</li>
+          <li>episode: {episode}</li>
+        </InfoBlock>
+
+        <div>
+          <SubSectionHeader>characters:</SubSectionHeader>
+          <CharactersGrid characters={characters as Character[]} />
+        </div>
       </div>
-    </div>
+    </ErrorAndLoadingHandler>
   );
 };
 
