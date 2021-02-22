@@ -5,6 +5,7 @@ import {
   Character,
   useGetCharacterDetailsQuery,
 } from "src/graphql/queries/getCharacterDetails.generated";
+import Loader from "../atoms/Loader";
 
 type RouteParams = {
   id: string;
@@ -16,8 +17,12 @@ const CharacterDetails: React.FC = () => {
     variables: { id },
   });
 
-  if (loading || error) {
-    return <p>wrong or not jet</p>;
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p>Sorry, something went wrong, please try again later</p>;
   }
 
   const {

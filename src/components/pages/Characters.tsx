@@ -3,6 +3,7 @@ import {
   Character,
   useGetCharactersQuery,
 } from "src/graphql/queries/getCharacters.generated";
+import Loader from "../atoms/Loader";
 import CharacterCard from "../atoms/CharacterCard";
 
 const Characters: React.FC = (): JSX.Element => {
@@ -10,8 +11,12 @@ const Characters: React.FC = (): JSX.Element => {
     variables: { page: 2 },
   });
 
-  if (loading || error) {
-    return <p>wrong or not jet</p>;
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p>Sorry, something went wrong, please try again later</p>;
   }
 
   const charactersList = data?.characters?.results as Character[];
