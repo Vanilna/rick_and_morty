@@ -5,6 +5,7 @@ import Home from "../components/pages/Home";
 import Characters from "src/components/pages/Characters";
 import CharacterDetails from "src/components/molecules/CharacterDetails";
 import Episodes from "src/components/pages/Episodes";
+import EpisodeDetails from "src/components/molecules/EpisodeDetails";
 
 const MainRouter = () => (
   <Switch>
@@ -14,9 +15,9 @@ const MainRouter = () => (
     <Route path="/characters">
       <Characters />
     </Route>
-    {/* <Route path="/episode-details/:id">
+    <Route path="/episode-details/:id">
       <EpisodeDetails />
-    </Route> */}
+    </Route>
     <Route path="/episodes">
       <Episodes />
     </Route>

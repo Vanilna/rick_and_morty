@@ -5,6 +5,7 @@ import {
   Character,
   useGetCharacterDetailsQuery,
 } from "src/graphql/queries/getCharacterDetails.generated";
+import LineCard from "../atoms/LineCard";
 import Loader from "../atoms/Loader";
 
 type RouteParams = {
@@ -40,7 +41,7 @@ const CharacterDetails: React.FC = () => {
   return (
     <div>
       <h3 className="text-3xl text-center font-bold text-white">{name}</h3>
-      <div className="grid grid-flow-row grid-cols-2 grid-rows-2 gap-4">
+      <div className="grid grid-flow-row grid-cols-2 auto-rows-max gap-4 m-3">
         <img
           src={image as string | undefined}
           alt="character portrait"
@@ -54,19 +55,19 @@ const CharacterDetails: React.FC = () => {
           <li>origin: {origin?.name}</li>
           <li>location: {location?.name}</li>
         </ul>
+      </div>
 
-        <div>
-          <h4 className="text-2xl m-3 font-bold text-white">episodes:</h4>
-          <ul>
-            {episode?.map((ep) => (
-              <li
-                key={ep?.id}
-                className="text-1xl font-semibold p-2.5 m-3 border-2 rounded-md bg-white"
-              >
-                {ep?.name}
-              </li>
+      <div>
+        <h4 className="text-2xl m-3 font-bold text-white">episodes:</h4>
+        <div className="grid grid-cols-2 grid-rows-10 gap-4 m-3">
+          {episode &&
+            episode.map((episodeItem) => (
+              <>
+                {episodeItem && (
+                  <LineCard episode={episodeItem} key={episodeItem?.id} />
+                )}
+              </>
             ))}
-          </ul>
         </div>
       </div>
     </div>
