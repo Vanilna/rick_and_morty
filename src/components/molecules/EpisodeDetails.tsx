@@ -4,9 +4,13 @@ import { useParams } from "react-router-dom";
 import Loader from "../atoms/Loader";
 import {
   Episode,
+  Character,
   useGetEpisodeDetailsQuery,
 } from "src/graphql/queries/getEpisodeDetails.generated";
-import CharacterCard from "../atoms/CharacterCard";
+import SubSectionHeader from "../atoms/SubSectionHeader";
+import SectionHeader from "../atoms/SectionHeader";
+import InfoBlock from "../atoms/InfoBlock";
+import CharactersGrid from "./CharactersGrid";
 
 type RouteParams = {
   id: string;
@@ -30,25 +34,16 @@ const CharacterDetails: React.FC = () => {
 
   return (
     <div>
-      <h3 className="text-3xl text-center font-bold text-white">{name}</h3>
+      <SectionHeader>{name}</SectionHeader>
 
-      <ul className="text-1xl font-semibold p-2.5 border-2 rounded-md bg-white m-3">
+      <InfoBlock>
         <li>Air date: {air_date}</li>
         <li>episode: {episode}</li>
-      </ul>
+      </InfoBlock>
 
       <div>
-        <h4 className="text-2xl m-3 font-bold text-white">characters:</h4>
-        <div className="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 m-3">
-          {characters &&
-            characters.map((character) => (
-              <>
-                {character && (
-                  <CharacterCard character={character} key={character.id} />
-                )}
-              </>
-            ))}
-        </div>
+        <SubSectionHeader>characters:</SubSectionHeader>
+        <CharactersGrid characters={characters as Character[]} />
       </div>
     </div>
   );

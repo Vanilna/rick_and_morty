@@ -1,55 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Loader from "../atoms/Loader";
-import LineCard from "../atoms/LineCard";
 import { useGetEpisodesQuery } from "src/graphql/queries/getEpisodes.generated";
 import { Episode } from "src/graphql/queries/getCharacters.generated";
+import LineCardGrid from "../molecules/LineCardGrig";
+import PageNavigation from "../molecules/PageNavigation";
+import usePageNavigation from "src/hooks/usePageNavigation";
 
 const Episodes: React.FC = (): JSX.Element => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = usePageNavigation();
   const { data, loading, error } = useGetEpisodesQuery({
     variables: { page },
   });
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <p>Sorry, something went wrong, please try again later</p>;
-  }
-
   const episodesList = data?.episodes?.results as Episode[];
   const maxPage = data?.episodes?.info?.pages;
 
-  const handleClick = (direction: string): void => {
-    if (!maxPage) return;
-    setPage((prev) => {
-      const next = direction === "forward" ? prev + 1 : prev - 1;
-      return next <= maxPage && next > 0 ? next : prev;
-    });
-  };
-
   return (
     <>
-      <div className="grid grid-cols-2 grid-rows-10 gap-4 m-3">
-        {episodesList &&
-          episodesList.map(({ name, id }) => (
-            <LineCard name={name} id={id} type="episode-details" key={id} />
-          ))}
-      </div>
-      <button
-        onClick={() => handleClick("back")}
-        className="p-1 m-3 bg-white border-2 rounded-md"
-      >
-        prev
-      </button>
-      <button
-        onClick={() => handleClick("forward")}
-        className="p-1 m-3 bg-white border-2 rounded-md"
-      >
-        next
-      </button>
+      {!loading && !error && (
+        <>
+          <LineCardGrid list={episodesList} type="episode-details" />
+          <PageNavigation handleClick={setPage} maxPage={maxPage} />
+        </>
+      )}
+      {loading && <Loader />}
+      {error && <p>Sorry, something went wrong, please try again later</p>}
     </>
   );
 };

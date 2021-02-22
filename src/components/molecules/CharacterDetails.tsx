@@ -5,8 +5,11 @@ import {
   Character,
   useGetCharacterDetailsQuery,
 } from "src/graphql/queries/getCharacterDetails.generated";
+import InfoBlock from "../atoms/InfoBlock";
 import LineCard from "../atoms/LineCard";
 import Loader from "../atoms/Loader";
+import SectionHeader from "../atoms/SectionHeader";
+import SubSectionHeader from "../atoms/SubSectionHeader";
 
 type RouteParams = {
   id: string;
@@ -40,33 +43,35 @@ const CharacterDetails: React.FC = () => {
 
   return (
     <div className="m-3">
-      <h3 className="text-3xl text-center font-bold text-white">{name}</h3>
+      <SectionHeader>{name}</SectionHeader>
       <div className="grid grid-flow-row grid-cols-2 auto-rows-max gap-4">
         <img
           src={image as string | undefined}
           alt="character portrait"
           className="border-2 rounded-md justify-self-center"
         />
-        <ul className="text-1xl font-semibold p-2.5 border-2 rounded-md bg-white">
+        <InfoBlock>
           <li>status: {status}</li>
           <li>species: {species}</li>
           <li>type: {type}</li>
           <li>gender: {gender}</li>
           <li>origin: {origin?.name}</li>
-        </ul>
+        </InfoBlock>
       </div>
 
       <div>
-        <h4 className="text-2xl font-bold text-white py-4">episodes:</h4>
-        <LineCard
-          name={location?.name}
-          type="location-details"
-          id={location?.id}
-        />
+        <SubSectionHeader>episodes:</SubSectionHeader>
+        <div className="my-3">
+          <LineCard
+            name={location?.name}
+            type="location-details"
+            id={location?.id}
+          />
+        </div>
       </div>
 
       <div>
-        <h4 className="text-2xl font-bold text-white py-4">episodes:</h4>
+        <SubSectionHeader>episodes:</SubSectionHeader>
         <div className="grid grid-cols-2 grid-rows-10 gap-4">
           {episode &&
             episode.map((episodeItem) => (

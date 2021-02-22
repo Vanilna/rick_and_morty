@@ -2,11 +2,15 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import Loader from "../atoms/Loader";
-import CharacterCard from "../atoms/CharacterCard";
+import SubSectionHeader from "../atoms/SubSectionHeader";
 import {
   useGetLocationDetailsQuery,
   Location as LocationType,
+  Character,
 } from "src/graphql/queries/getLocationDetails.generated";
+import SectionHeader from "../atoms/SectionHeader";
+import InfoBlock from "../atoms/InfoBlock";
+import CharactersGrid from "./CharactersGrid";
 
 type RouteParams = {
   id: string;
@@ -30,25 +34,16 @@ const LocationDetails: React.FC = () => {
 
   return (
     <div>
-      <h3 className="text-3xl text-center font-bold text-white">{name}</h3>
+      <SectionHeader>{name}</SectionHeader>
 
-      <ul className="text-1xl font-semibold p-2.5 border-2 rounded-md bg-white m-3">
+      <InfoBlock>
         <li>Type: {type}</li>
         <li>Dimension: {dimension}</li>
-      </ul>
+      </InfoBlock>
 
       <div>
-        <h4 className="text-2xl m-3 font-bold text-white">characters:</h4>
-        <div className="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 m-3">
-          {residents &&
-            residents.map((resident) => (
-              <>
-                {resident && (
-                  <CharacterCard character={resident} key={resident.id} />
-                )}
-              </>
-            ))}
-        </div>
+        <SubSectionHeader>characters:</SubSectionHeader>
+        <CharactersGrid characters={residents as Character[]} />
       </div>
     </div>
   );
