@@ -15,7 +15,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   }
 
   return (
-    <div>
+    <div className="p-2.5 border-2 rounded-md bg-white">
       <Link to={`/character-details/${id}`}>
         <img src={image} alt={name} />
         <h3>{name}</h3>

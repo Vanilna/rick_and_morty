@@ -22,7 +22,7 @@ const Characters: React.FC = (): JSX.Element => {
   const charactersList = data?.characters?.results as Character[];
 
   return (
-    <div className="flex">
+    <div className="grid grid-flow-col grid-cols-5 grid-rows-4 gap-4">
       {charactersList &&
         charactersList.map((char) => (
           <CharacterCard character={char} key={char.id} />

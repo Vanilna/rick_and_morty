@@ -7,7 +7,9 @@ type HeaderLinkProps = {
 };
 
 const HeaderLink: React.FC<HeaderLinkProps> = ({ label, to }): JSX.Element => (
-  <Link to={to}>{label}</Link>
+  <Link to={to} className="p-1 m-3 bg-white">
+    {label}
+  </Link>
 );
 
 export default HeaderLink;
