@@ -34,8 +34,8 @@ const Locations: React.FC = (): JSX.Element => {
     <>
       <div className="grid grid-cols-2 grid-rows-10 gap-4 m-3">
         {locationsList &&
-          locationsList.map((location) => (
-            <LineCard episode={location} key={location.id} />
+          locationsList.map(({ name, id }) => (
+            <LineCard name={name} id={id} type="location-details" key={id} />
           ))}
       </div>
       <button

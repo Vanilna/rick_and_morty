@@ -7,6 +7,7 @@ import CharacterDetails from "src/components/molecules/CharacterDetails";
 import Episodes from "src/components/pages/Episodes";
 import EpisodeDetails from "src/components/molecules/EpisodeDetails";
 import Locations from "src/components/pages/Locations";
+import LocationDetails from "src/components/molecules/LocationDetails";
 
 const MainRouter = () => (
   <Switch>
@@ -22,9 +23,9 @@ const MainRouter = () => (
     <Route path="/episodes">
       <Episodes />
     </Route>
-    {/* <Route path="/location-details/:id">
+    <Route path="/location-details/:id">
       <LocationDetails />
-    </Route> */}
+    </Route>
     <Route path="/locations">
       <Locations />
     </Route>

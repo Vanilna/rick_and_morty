@@ -2,19 +2,19 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import Loader from "../atoms/Loader";
-import {
-  Episode,
-  useGetEpisodeDetailsQuery,
-} from "src/graphql/queries/getEpisodeDetails.generated";
 import CharacterCard from "../atoms/CharacterCard";
+import {
+  useGetLocationDetailsQuery,
+  Location as LocationType,
+} from "src/graphql/queries/getLocationDetails.generated";
 
 type RouteParams = {
   id: string;
 };
 
-const CharacterDetails: React.FC = () => {
+const LocationDetails: React.FC = () => {
   const { id } = useParams<RouteParams>();
-  const { data, loading, error } = useGetEpisodeDetailsQuery({
+  const { data, loading, error } = useGetLocationDetailsQuery({
     variables: { id },
   });
 
@@ -26,25 +26,25 @@ const CharacterDetails: React.FC = () => {
     return <p>Sorry, something went wrong, please try again later</p>;
   }
 
-  const { name, air_date, episode, characters } = data?.episode as Episode;
+  const { name, type, dimension, residents } = data?.location as LocationType;
 
   return (
     <div>
       <h3 className="text-3xl text-center font-bold text-white">{name}</h3>
 
       <ul className="text-1xl font-semibold p-2.5 border-2 rounded-md bg-white m-3">
-        <li>Air date: {air_date}</li>
-        <li>episode: {episode}</li>
+        <li>Type: {type}</li>
+        <li>Dimension: {dimension}</li>
       </ul>
 
       <div>
         <h4 className="text-2xl m-3 font-bold text-white">characters:</h4>
         <div className="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 m-3">
-          {characters &&
-            characters.map((character) => (
+          {residents &&
+            residents.map((resident) => (
               <>
-                {character && (
-                  <CharacterCard character={character} key={character.id} />
+                {resident && (
+                  <CharacterCard character={resident} key={resident.id} />
                 )}
               </>
             ))}
@@ -54,4 +54,4 @@ const CharacterDetails: React.FC = () => {
   );
 };
 
-export default CharacterDetails;
+export default LocationDetails;

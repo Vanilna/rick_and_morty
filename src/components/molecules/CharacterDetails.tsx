@@ -39,9 +39,9 @@ const CharacterDetails: React.FC = () => {
   } = data?.character as Character;
 
   return (
-    <div>
+    <div className="m-3">
       <h3 className="text-3xl text-center font-bold text-white">{name}</h3>
-      <div className="grid grid-flow-row grid-cols-2 auto-rows-max gap-4 m-3">
+      <div className="grid grid-flow-row grid-cols-2 auto-rows-max gap-4">
         <img
           src={image as string | undefined}
           alt="character portrait"
@@ -53,18 +53,31 @@ const CharacterDetails: React.FC = () => {
           <li>type: {type}</li>
           <li>gender: {gender}</li>
           <li>origin: {origin?.name}</li>
-          <li>location: {location?.name}</li>
         </ul>
       </div>
 
       <div>
-        <h4 className="text-2xl m-3 font-bold text-white">episodes:</h4>
-        <div className="grid grid-cols-2 grid-rows-10 gap-4 m-3">
+        <h4 className="text-2xl font-bold text-white py-4">episodes:</h4>
+        <LineCard
+          name={location?.name}
+          type="location-details"
+          id={location?.id}
+        />
+      </div>
+
+      <div>
+        <h4 className="text-2xl font-bold text-white py-4">episodes:</h4>
+        <div className="grid grid-cols-2 grid-rows-10 gap-4">
           {episode &&
             episode.map((episodeItem) => (
               <>
                 {episodeItem && (
-                  <LineCard episode={episodeItem} key={episodeItem?.id} />
+                  <LineCard
+                    name={episodeItem.name}
+                    id={episodeItem.id}
+                    type="episode-details"
+                    key={episodeItem.id}
+                  />
                 )}
               </>
             ))}
