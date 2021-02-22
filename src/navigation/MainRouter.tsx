@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../components/pages/Home";
 import Characters from "src/components/pages/Characters";
 import CharacterDetails from "src/components/molecules/CharacterDetails";
+import Episodes from "src/components/pages/Episodes";
 
 const MainRouter = () => (
   <Switch>
@@ -12,6 +13,12 @@ const MainRouter = () => (
     </Route>
     <Route path="/characters">
       <Characters />
+    </Route>
+    {/* <Route path="/episode-details/:id">
+      <EpisodeDetails />
+    </Route> */}
+    <Route path="/episodes">
+      <Episodes />
     </Route>
     <Route path="/">
       <Home />
