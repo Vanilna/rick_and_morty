@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import {
   Character,
+  Episode,
   useGetCharacterDetailsQuery,
 } from "src/graphql/queries/getCharacterDetails.generated";
 
@@ -11,6 +12,7 @@ import SectionHeader from "../atoms/SectionHeader";
 import SubSectionHeader from "../atoms/SubSectionHeader";
 import InfoBlock from "../atoms/InfoBlock";
 import LineCard from "../atoms/LineCard";
+import LineCardGrid from "../molecules/LineCardGrig";
 
 type RouteParams = {
   id: string;
@@ -68,21 +70,7 @@ const CharacterDetails: React.FC = () => {
 
         <div>
           <SubSectionHeader>episodes:</SubSectionHeader>
-          <div className="grid grid-cols-2 grid-rows-10 gap-4">
-            {episode &&
-              episode.map((episodeItem) => (
-                <>
-                  {episodeItem && (
-                    <LineCard
-                      name={episodeItem.name}
-                      id={episodeItem.id}
-                      type="episode-details"
-                      key={episodeItem.id}
-                    />
-                  )}
-                </>
-              ))}
-          </div>
+          <LineCardGrid list={episode as Episode[]} type="episode-details" />
         </div>
       </div>
     </ErrorAndLoadingHandler>
